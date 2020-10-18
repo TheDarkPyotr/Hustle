@@ -1,0 +1,391 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+  {% block content %}
+      <div class="col-lg-12 col-xl-12 mg-t-10">
+        <div class="card mg-b-10">
+          <div class="card-header pd-t-20 d-sm-flex align-items-start justify-content-between bd-b-0 pd-b-0">
+            <div>
+              <h6 class="mg-b-5">{{ response.university }} - {{ response.cds }}</h6>
+              <p class="tx-13 tx-color-03 mg-b-0">{{ response.matricola }}</p>
+            </div>
+            <div class="d-flex mg-t-20 mg-sm-t-0">
+              <div class="btn-group flex-fill">
+                <button class="btn btn-white btn-xs active">Range</button>
+                <button class="btn btn-white btn-xs">Period</button>
+              </div>
+            </div>
+          </div><!-- card-header -->
+          <div class="card-body pd-y-30">
+            <div class="d-sm-flex">
+              <div class="media">
+                <div class="wd-40 wd-md-50 ht-40 ht-md-50 bg-teal tx-white mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded op-6">
+                  <i data-feather="bar-chart-2"></i>
+                </div>
+                <div class="media-body">
+                  <h6 class="tx-sans tx-uppercase tx-10 tx-spacing-1 tx-color-03 tx-semibold tx-nowrap mg-b-5 mg-md-b-8">Esami totali</h6>
+                  <h4 class="tx-20 tx-sm-18 tx-md-20 tx-normal tx-rubik mg-b-0"> {{ exam_stat.total }}</h4>
+                </div>
+              </div>
+              <div class="media mg-t-20 mg-sm-t-0 mg-sm-l-15 mg-md-l-40">
+                <div class="wd-40 wd-md-50 ht-40 ht-md-50 bg-pink tx-white mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded op-5">
+                  <i data-feather="bar-chart-2"></i>
+                </div>
+                <div class="media-body">
+                  <h6 class="tx-sans tx-uppercase tx-10 tx-spacing-1 tx-color-03 tx-semibold mg-b-5 mg-md-b-8">Esami rimanenti</h6>
+                  <h4 class="tx-20 tx-sm-18 tx-md-20 tx-normal tx-rubik mg-b-0">{{ exam_stat.done }}</h4>
+                </div>
+              </div>
+              <div class="media mg-t-20 mg-sm-t-0 mg-sm-l-15 mg-md-l-40">
+                <div class="wd-40 wd-md-50 ht-40 ht-md-50 bg-primary tx-white mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded op-4">
+                  <i data-feather="bar-chart-2"></i>
+                </div>
+                <div class="media-body">
+                  <h6 class="tx-sans tx-uppercase tx-10 tx-spacing-1 tx-color-03 tx-semibold mg-b-5 mg-md-b-8">CFU attuali</h6>
+                  <h4 class="tx-20 tx-sm-18 tx-md-20 tx-normal tx-rubik mg-b-0">{{ exam_stat.total_cfu }}</h4>
+                </div>
+              </div>
+            </div>
+          </div><!-- card-body -->
+          <div class="table-responsive">
+            <table class="table table-dashboard mg-b-0">
+              <thead>
+                <tr>
+                  <th>Materia</th>
+                  <th class="text-right">CFU</th>
+                  <th class="text-left">Descrizione</th>
+                  <th class="text-left">Docente</th>
+                  <th class="text-right">Data</th>
+                  <th class="text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for anno in exam_list.esami_per_anno %}
+          
+                {% for exam in anno %}
+        
+                <tr>
+                  <td class="tx-color-03 tx-normal">{{ exam.nome }}</td>
+                  <td class="tx-medium text-right">{{ exam.cfu }}</td>
+                  <td class="text-left tx-normal">{{ exam.tipo_esame }}</td>
+                  <td class="text-left tx-normal">{{ exam.voto }}</td>
+                  <td class="tx-medium text-right">{{ exam.data_esame }}</td>
+                  <td class="tx-medium text-right">      
+                  {% if exam.stato == "Superata" %}  
+                        <span class="badge badge-success">{{ exam.stato }}</span>
+                    {% else %} 
+                        <span class="badge badge-danger"> {{ exam.stato }}</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                  {% endfor %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div><!-- table-responsive -->
+        </div><!-- card -->
+    </div>
+
+<div class="col-lg-12 col-xl-12 mg-t-10">
+    <div class="table-responsive">
+        <table class="table table-primary table-hover table-striped mg-b-0">
+          <thead>
+            <tr>
+              <th scope="col">Materia</th>
+              <th scope="col">Aula</th>
+              <th scope="col">Orario</th>
+              <th scope="col">Docente</th>
+              <th scope="col">Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lesson in schedule %}
+            <tr>
+              <td class="tx-color-03 tx-normal">{{ lesson.subject }}</td>
+              <td>{{ lesson.room }}</td>
+              <td>{{ lesson.date }}</td>
+              <td>{{ lesson.subject.teacher }}</td>
+              <td>{{ lesson.note}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div><!-- table-responsive -->
+    </div>
+
+      {% endblock %}
+
+      {% block dashboard %}
+      <script src="{% static '/lib/jquery/jquery.min.js' %}"></script>
+      <script src="{% static '/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static '/lib/feather-icons/feather.min.js' %}"></script>
+      <script src="{% static '/lib/perfect-scrollbar/perfect-scrollbar.min.js' %}""></script>
+      <script src="{% static '/lib/jquery.flot/jquery.flot.js' %}"></script>
+      <script src="{% static '/lib/jquery.flot/jquery.flot.stack.js' %}"></script>
+      <script src="{% static '/lib/jquery.flot/jquery.flot.resize.js' %}"></script>
+      <script src="{% static '/lib/chart.js' %}/Chart.bundle.min.js' %}"></script>
+      <script src="{% static '/lib/jqvmap/jquery.vmap.min.js' %}"></script>
+      <script src="{% static '/lib/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+  
+      <script src="{% static '/assets/js/dashforge.js' %}"></script>
+      <script src="{% static '/assets/js/dashforge.aside.js' %}"></script>
+      <script src="{% static '/assets/js/dashforge.sampledata.js' %}"></script>
+  
+      <!-- append theme customizer -->
+      <script src="{% static '/lib/js-cookie/js.cookie.js' %}"></script>
+      <script src="{% static '/assets/js/dashforge.settings.js' %}"></script>
+  
+      <script>
+        $(function(){
+          'use strict'
+  
+          var plot = $.plot('#flotChart', [{
+            data: df3,
+            color: '#69b2f8'
+          },{
+            data: df1,
+            color: '#d1e6fa'
+          },{
+            data: df2,
+            color: '#d1e6fa',
+            lines: {
+              fill: false,
+              lineWidth: 1.5
+            }
+          }], {
+                  series: {
+              stack: 0,
+                      shadowSize: 0,
+              lines: {
+                show: true,
+                lineWidth: 0,
+                fill: 1
+              }
+                  },
+            grid: {
+              borderWidth: 0,
+              aboveData: true
+            },
+                  yaxis: {
+              show: false,
+                      min: 0,
+                      max: 350
+                  },
+                  xaxis: {
+              show: true,
+              ticks: [[0,''],[8,'Jan'],[20,'Feb'],[32,'Mar'],[44,'Apr'],[56,'May'],[68,'Jun'],[80,'Jul'],[92,'Aug'],[104,'Sep'],[116,'Oct'],[128,'Nov'],[140,'Dec']],
+              color: 'rgba(255,255,255,.2)'
+            }
+          });
+  
+  
+          $.plot('#flotChart2', [{
+            data: [[0,55],[1,38],[2,20],[3,70],[4,50],[5,15],[6,30],[7,50],[8,40],[9,55],[10,60],[11,40],[12,32],[13,17],[14,28],[15,36],[16,53],[17,66],[18,58],[19,46]],
+            color: '#69b2f8'
+          },{
+            data: [[0,80],[1,80],[2,80],[3,80],[4,80],[5,80],[6,80],[7,80],[8,80],[9,80],[10,80],[11,80],[12,80],[13,80],[14,80],[15,80],[16,80],[17,80],[18,80],[19,80]],
+            color: '#f0f1f5'
+          }], {
+            series: {
+              stack: 0,
+              bars: {
+                show: true,
+                lineWidth: 0,
+                barWidth: .5,
+                fill: 1
+              }
+            },
+            grid: {
+              borderWidth: 0,
+              borderColor: '#edeff6'
+            },
+            yaxis: {
+              show: false,
+              max: 80
+            },
+            xaxis: {
+              ticks:[[0,'Jan'],[4,'Feb'],[8,'Mar'],[12,'Apr'],[16,'May'],[19,'Jun']],
+              color: '#fff',
+            }
+          });
+  
+          $.plot('#flotChart3', [{
+              data: df4,
+              color: '#9db2c6'
+            }], {
+                  series: {
+                      shadowSize: 0,
+              lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [ { opacity: 0 }, { opacity: .5 } ] }
+              }
+                  },
+            grid: {
+              borderWidth: 0,
+              labelMargin: 0
+            },
+                  yaxis: {
+              show: false,
+              min: 0,
+              max: 60
+            },
+                  xaxis: { show: false }
+              });
+  
+          $.plot('#flotChart4', [{
+              data: df5,
+              color: '#9db2c6'
+            }], {
+                  series: {
+                      shadowSize: 0,
+              lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [ { opacity: 0 }, { opacity: .5 } ] }
+              }
+                  },
+            grid: {
+              borderWidth: 0,
+              labelMargin: 0
+            },
+                  yaxis: {
+              show: false,
+              min: 0,
+              max: 80
+            },
+                  xaxis: { show: false }
+              });
+  
+          $.plot('#flotChart5', [{
+              data: df6,
+              color: '#9db2c6'
+            }], {
+                  series: {
+                      shadowSize: 0,
+              lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [ { opacity: 0 }, { opacity: .5 } ] }
+              }
+                  },
+            grid: {
+              borderWidth: 0,
+              labelMargin: 0
+            },
+                  yaxis: {
+              show: false,
+              min: 0,
+              max: 80
+            },
+                  xaxis: { show: false }
+              });
+  
+          $.plot('#flotChart6', [{
+              data: df4,
+              color: '#9db2c6'
+            }], {
+                  series: {
+                      shadowSize: 0,
+              lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [ { opacity: 0 }, { opacity: .5 } ] }
+              }
+                  },
+            grid: {
+              borderWidth: 0,
+              labelMargin: 0
+            },
+                  yaxis: {
+              show: false,
+              min: 0,
+              max: 60
+            },
+                  xaxis: { show: false }
+              });
+  
+          $('#vmap').vectorMap({
+            map: 'usa_en',
+            showTooltip: true,
+            backgroundColor: '#fff',
+            color: '#d1e6fa',
+            colors: {
+              fl: '#69b2f8',
+              ca: '#69b2f8',
+              tx: '#69b2f8',
+              wy: '#69b2f8',
+              ny: '#69b2f8'
+            },
+            selectedColor: '#00cccc',
+            enableZoom: false,
+            borderWidth: 1,
+            borderColor: '#fff',
+            hoverOpacity: .85
+          });
+  
+  
+          var ctxLabel = ['6am', '10am', '1pm', '4pm', '7pm', '10pm'];
+          var ctxData1 = [20, 60, 50, 45, 50, 60];
+          var ctxData2 = [10, 40, 30, 40, 55, 25];
+  
+          // Bar chart
+          var ctx1 = document.getElementById('chartBar1').getContext('2d');
+          new Chart(ctx1, {
+            type: 'horizontalBar',
+            data: {
+              labels: ctxLabel,
+              datasets: [{
+                data: ctxData1,
+                backgroundColor: '#69b2f8'
+              }, {
+                data: ctxData2,
+                backgroundColor: '#d1e6fa'
+              }]
+            },
+            options: {
+              maintainAspectRatio: false,
+              responsive: true,
+              legend: {
+                display: false,
+                labels: {
+                  display: false
+                }
+              },
+              scales: {
+                yAxes: [{
+                  gridLines: {
+                    display: false
+                  },
+                  ticks: {
+                    display: false,
+                    beginAtZero: true,
+                    fontSize: 10,
+                    fontColor: '#182b49'
+                  }
+                }],
+                xAxes: [{
+                  gridLines: {
+                    display: true,
+                    color: '#eceef4'
+                  },
+                  barPercentage: 0.6,
+                  ticks: {
+                    beginAtZero: true,
+                    fontSize: 10,
+                    fontColor: '#8392a5',
+                    max: 80
+                  }
+                }]
+              }
+            }
+          });
+  
+        })
+      </script>
+      {% endblock %}
+   

@@ -1,0 +1,543 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+  {% block content %}
+  <div class="content-body">
+    <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+      <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Helpdesk Management</li>
+            </ol>
+          </nav>
+          <h4 class="mg-b-0 tx-spacing--1">Università di Pisa - Corso di INFORMATICA</h4>
+        </div>
+      </div>
+
+      <div class="row row-xs">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-header d-sm-flex justify-content-between bd-b-0 pd-t-20 pd-b-0">
+              <div class="mg-b-10 mg-sm-b-0">
+                <h6 class="mg-b-5">Media esami superati</h6>
+                <p class="tx-12 tx-color-03 mg-b-0">su un totale di 13</p>
+              </div>
+              <ul class="list-inline tx-uppercase tx-10 tx-medium tx-spacing-1 tx-color-03 mg-b-0">
+                <li class="list-inline-item">
+                  <span class="d-inline-block wd-7 ht-7 bg-gray-400 rounded-circle mg-r-5"></span>
+                  New<span class="d-none d-md-inline"> Tickets</span>
+                </li>
+                <li class="list-inline-item mg-l-10">
+                  <span class="d-inline-block wd-7 ht-7 bg-df-2 rounded-circle mg-r-5"></span>
+                  Solved<span class="d-none d-md-inline"> Tickets</span>
+                </li>
+                <li class="list-inline-item mg-l-10">
+                  <span class="d-inline-block wd-7 ht-7 bg-primary rounded-circle mg-r-5"></span>
+                  Open<span class="d-none d-md-inline"> Tickets</span>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="chart-fifteen">
+                <div id="flotChart1" class="flot-chart"></div>
+              </div>
+            </div><!-- card-body -->
+            <div class="card-footer pd-y-15 pd-x-20">
+              <div class="row row-sm">
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                  <h4 class="tx-normal tx-rubik mg-b-10">15</h4>
+                  <div class="progress ht-2 mg-b-10">
+                    <div class="progress-bar wd-100p bg-df-2" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-2">Esami superati</h6>
+                  <p class="tx-10 tx-color-03 mg-b-0"><span class="tx-medium tx-success">1.2% <i class="icon ion-md-arrow-down"></i></span> than yesterday</p>
+                </div><!-- col -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg">
+                  <h4 class="tx-normal tx-rubik mg-b-10">8</h4>
+                  <div class="progress ht-2 mg-b-10">
+                    <div class="progress-bar wd-85p bg-df-2" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-2">Esami rimanenti</h6>
+                  <p class="tx-10 tx-color-03 mg-b-0"><span class="tx-medium tx-danger">-0.6% <i class="icon ion-md-arrow-down"></i></span> than yesterday</p>
+                </div><!-- col -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg mg-t-20 mg-sm-t-0">
+                  <h4 class="tx-normal tx-rubik mg-b-10">90</h4>
+                  <div class="progress ht-2 mg-b-10">
+                    <div class="progress-bar wd-25p bg-df-2" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-2">CFU Totali</h6>
+                  <p class="tx-10 tx-color-03 mg-b-0"><span class="tx-medium tx-success">0.3% <i class="icon ion-md-arrow-down"></i></span> than yesterday</p>
+                </div><!-- col -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg mg-t-20 mg-md-t-0">
+                  <h4 class="tx-normal tx-rubik mg-b-10">90</h4>
+                  <div class="progress ht-2 mg-b-10">
+                    <div class="progress-bar wd-45p bg-df-2" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-2">CFU rimanenti</h6>
+                  <p class="tx-10 tx-color-03 mg-b-0"><span class="tx-medium tx-success">0.3% <i class="icon ion-md-arrow-down"></i></span> than yesterday</p>
+                </div><!-- col -->
+                <div class="col-6 col-sm-4 col-md-3 col-lg mg-t-20 mg-lg-t-0">
+                  <h4 class="tx-normal tx-rubik mg-b-10">30</h4>
+                  <div class="progress ht-2 mg-b-10">
+                    <div class="progress-bar wd-30p bg-df-2" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-2">CFU annui</h6>
+                  <p class="tx-10 tx-color-03 mg-b-0"><span class="tx-medium tx-success">0.3% <i class="icon ion-md-arrow-down"></i></span> than yesterday</p>
+                </div><!-- col -->
+              </div><!-- row -->
+            </div><!-- card-footer -->
+          </div><!-- card -->
+            <div class="row row-xs mg-t-10">
+              <div class="col-lg-12">
+
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                  <h6 class="mg-b-0">Date appelli</h6>
+                  <div class="d-flex tx-18">
+                    <a href="" class="link-03 lh-0"><i class="icon ion-md-refresh"></i></a>
+                    <a href="" class="link-03 lh-0 mg-l-10"><i class="icon ion-md-more"></i></a>
+                  </div>
+                </div>
+                <ul class="list-group list-group-flush tx-13">
+                  <li class="list-group-item d-flex pd-sm-x-20">
+                    <div class="avatar d-none d-sm-block"><span class="avatar-initial rounded-circle bg-indigo op-5"><i class="icon ion-md-return-left"></i></span></div>
+                    <div class="pd-sm-l-10">
+                      <p class="tx-medium mg-b-2">Calcolo Numerico - Prof.ssa Del Corso </p>
+                      <small class="tx-12 tx-info mg-b-0">Mar 21, 2019, 1:00pm</small>
+                    </div>
+                    <div class="mg-l-auto text-right">
+                      <p class="tx-medium mg-b-2">-$16.50</p>
+                      <small class="tx-12 tx-success mg-b-0">Completed</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex pd-sm-x-20">
+                    <div class="avatar d-none d-sm-block"><span class="avatar-initial rounded-circle bg-orange op-5"><i class="icon ion-md-bus"></i></span></div>
+                    <div class="pd-sm-l-10">
+                      <p class="tx-medium mg-b-2">Calcolo probabilità e statistica - Prof. Pratelli/Ghimenti</p>
+                      <small class="tx-12 tx-color-03 mg-b-0">Mar 20, 2019, 11:40am</small>
+                    </div>
+                    <div class="mg-l-auto text-right">
+                      <p class="tx-medium mg-b-2">3 Items</p>
+                      <small class="tx-12 tx-info mg-b-0">For pickup</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex pd-sm-x-20">
+                    <div class="avatar d-none d-sm-block"><span class="avatar-initial rounded-circle bg-teal"><i class="icon ion-md-checkmark"></i></span></div>
+                    <div class="pd-sm-l-10">
+                      <p class="tx-medium mg-b-0">Fisica - Prof. Messineo</p>
+                      <small class="tx-12 tx-color-03 mg-b-0">Mar 20, 2019, 10:30pm</small>
+                    </div>
+                    <div class="mg-l-auto text-right">
+                      <p class="tx-medium mg-b-0">+ $129.50</p>
+                      <small class="tx-12 tx-success mg-b-0">Completed</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex pd-sm-x-20">
+                    <div class="avatar d-none d-sm-block"><span class="avatar-initial rounded-circle bg-gray-400"><i class="icon ion-md-close"></i></span></div>
+                    <div class="pd-sm-l-10">
+                      <p class="tx-medium mg-b-0">Analisi Matematica - Prof. Grisanti/Tortorelli</p>
+                      <small class="tx-12 tx-color-03 mg-b-0">Mar 19, 2019, 12:54pm</small>
+                    </div>
+                    <div class="mg-l-auto text-right">
+                      <p class="tx-medium mg-b-0">$150.00</p>
+                      <small class="tx-12 tx-danger mg-b-0">Declined</small>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-footer text-center tx-13">
+                  <a href="" class="link-03">Visualizza tutte le date <i class="icon ion-md-arrow-down mg-l-5"></i></a>
+                </div><!-- card-footer -->
+              </div><!-- card -->
+              </div>
+            </div>
+            <div class="row row-xs mg-t-10">
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-header pd-b-0 pd-t-20 bd-b-0">
+                  <h6 class="mg-b-0">CFU conseguiti per tipologia</h6>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="chart-seventeen"><canvas id="chartBar2"></canvas></div>
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div>
+            <div class="col-md-5 mg-t-10 mg-md-t-0">
+              <div class="card">
+                <div class="card-header pd-b-0 pd-t-20 bd-b-0">
+                  <h6 class="mg-b-0">Corso di INFORMATICA</h6>
+                </div><!-- card-header -->
+                <div class="card-body pd-y-10">
+                  <div class="d-flex align-items-baseline tx-rubik">
+                    <h1 class="tx-40 lh-1 tx-normal tx-spacing--2 mg-b-5 mg-r-5">180 CFU</h1>
+                  </div>
+                  <h6 class="tx-uppercase tx-spacing-1 tx-semibold tx-10 tx-color-02 mg-b-15">totali di laurea</h6>
+
+                  <div class="progress bg-transparent op-7 ht-10 mg-b-15">
+                    <div class="progress-bar bg-primary wd-50p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success wd-25p bd-l bd-white" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning wd-5p bd-l bd-white" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-pink wd-5p bd-l bd-white" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-teal wd-10p bd-l bd-white" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-purple wd-5p bd-l bd-white" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+
+                  <table class="table-dashboard-two">
+                    <tbody>
+                      <tr>
+                        <td><div class="wd-12 ht-12 rounded-circle bd bd-3 bd-primary"></div></td>
+                        <td class="tx-medium">MAT</td>
+                        <td class="text-right">46</td>
+                        <td class="text-right">CFU</td>
+                      </tr>
+                      <tr>
+                        <td><div class="wd-12 ht-12 rounded-circle bd bd-3 bd-success"></div></td>
+                        <td class="tx-medium">FIS</td>
+                        <td class="text-right">12</td>
+                        <td class="text-right">CFU</td>
+                      </tr>
+                      <tr>
+                        <td><div class="wd-12 ht-12 rounded-circle bd bd-3 bd-warning"></div></td>
+                        <td class="tx-medium">INF</td>
+                        <td class="text-right">125</td>
+                        <td class="text-right">CFU</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div>
+         
+            <div class="col-md-16 mg-t-10">
+              <div class="media d-block d-sm-flex">
+                <div class="media-body">
+                  <h5 class="mg-b-15 tx-inverse">Media heading</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+                <img src="https://via.placeholder.com/640x426" class="wd-100p wd-sm-200 rounded mg-sm-l-20 mg-t-20 mg-sm-t-0" alt="">
+              </div>
+              <hr>
+              <div class="media d-block d-sm-flex">
+                <div class="media-body">
+                  <h5 class="mg-b-15 tx-inverse">Media heading</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+                <img src="https://via.placeholder.com/640x426" class="wd-100p wd-sm-200 rounded mg-sm-l-20 mg-t-20 mg-sm-t-0" alt="">
+              </div>
+            </div>
+          </div><!-- row -->
+        </div><!-- col -->
+        <div class="col-lg-4 mg-t-10 mg-lg-t-0">
+          <div class="row row-xs">
+            <div class="col-12 col-md-6 col-lg-12">
+              <div class="card card-body">
+                <div class="media d-block d-sm-flex align-items-center">
+                  <div class="d-inline-block pos-relative">
+                    <span class="peity-donut" data-peity='{ "fill": ["#65e0e0","#e5e9f2"], "height": 110, "width": 110, "innerRadius": 46 }'>70,30</span>
+
+                    <div class="pos-absolute a-0 d-flex flex-column align-items-center justify-content-center">
+                      <h3 class="tx-rubik tx-spacing--1 mg-b-0">86%</h3>
+                      <span class="tx-9 tx-semibold tx-sans tx-color-03 tx-uppercase">Reached</span>
+                    </div>
+                  </div>
+                  <div class="media-body mg-t-20 mg-sm-t-0 mg-sm-l-20">
+                    <h6 class="mg-b-5">Time to Resolved Complaint</h6>
+                    <p class="lh-4 tx-12 tx-color-03 mg-b-15">The average time taken to resolve complaints.</p>
+                    <h3 class="tx-spacing--1 mg-b-0">7m:32s <small class="tx-13 tx-color-03">/ Goal: 8m:0s</small></h3>
+                  </div><!-- media-body -->
+                </div><!-- media -->
+              </div>
+            </div><!-- col -->
+            <div class="col-12 col-md-6 col-lg-12 mg-t-10 mg-md-t-0 mg-lg-t-10">
+              <div class="card card-body">
+                <div class="media d-block d-sm-flex align-items-center">
+                  <div class="d-inline-block pos-relative">
+                    <span class="peity-donut" data-peity='{ "fill": ["#69b2f8","#e5e9f2"], "height": 110, "width": 110, "innerRadius": 46 }'>69,31</span>
+
+                    <div class="pos-absolute a-0 d-flex flex-column align-items-center justify-content-center">
+                      <h3 class="tx-rubik tx-spacing--1 mg-b-0">69%</h3>
+                      <span class="tx-9 tx-semibold tx-sans tx-color-03 tx-uppercase">Reached</span>
+                    </div>
+                  </div>
+                  <div class="media-body mg-t-20 mg-sm-t-0 mg-sm-l-20">
+                    <h6 class="mg-b-5">Average Speed of Answer</h6>
+                    <p class="lh-4 tx-12 tx-color-03 mg-b-15">Measure how quickly support staff answer incoming calls.</p>
+                    <h3 class="tx-spacing--1 mg-b-0">0m:20s <small class="tx-13 tx-color-03">/ Goal: 0m:10s</small></h3>
+                  </div><!-- media-body -->
+                </div><!-- media -->
+              </div>
+            </div><!-- col -->
+            <div class="col-12 col-md-6 col-lg-12 mg-t-10">
+              <div class="card">
+                <div class="card-header pd-t-20 pd-b-0 bd-b-0 d-flex justify-content-between">
+                  <h6 class="lh-5 mg-b-0">Complaints Received</h6>
+                  <a href="" class="tx-13 link-03">This Month <i class="icon ion-ios-arrow-down tx-12"></i></a>
+                </div><!-- card-header -->
+                <div class="card-body pd-0 pos-relative">
+                  <div class="pos-absolute t-10 l-20 z-index-10">
+                    <div class="d-flex align-items-baseline">
+                      <h1 class="tx-normal tx-rubik mg-b-0 mg-r-5">165</h1>
+                      <p class="tx-11 tx-color-03 mg-b-0"><span class="tx-medium tx-success">0.3% <i class="icon ion-md-arrow-down"></i></span> than last month</p>
+                    </div>
+                    <p class="tx-12 tx-color-03 wd-60p">The total number of complaints that have been received.</p>
+                  </div>
+
+                  <div class="chart-sixteen">
+                    <div id="flotChart2" class="flot-chart"></div>
+                  </div>
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-12 col-md-6 col-lg-12 mg-t-10">
+              <div class="card">
+                <div class="card-header pd-t-20 pd-b-0 bd-b-0">
+                  <h6 class="lh-5 mg-b-5">Overall Rating</h6>
+                  <p class="tx-12 tx-color-03 mg-b-0">Measures the quality or your support team’s efforts.</p>
+                </div><!-- card-header -->
+                <div class="card-body pd-0">
+                  <div class="pd-t-10 pd-b-15 pd-x-20 d-flex align-items-baseline">
+                    <h1 class="tx-normal tx-rubik mg-b-0 mg-r-5">4.2</h1>
+                    <div class="tx-18">
+                      <i class="icon ion-md-star lh-0 tx-orange"></i>
+                      <i class="icon ion-md-star lh-0 tx-orange"></i>
+                      <i class="icon ion-md-star lh-0 tx-orange"></i>
+                      <i class="icon ion-md-star lh-0 tx-orange"></i>
+                      <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                    </div>
+                  </div>
+                  <div class="list-group list-group-flush tx-13">
+                    <div class="list-group-item pd-y-5 pd-x-20 d-flex align-items-center">
+                      <strong class="tx-12 tx-rubik">5.0</strong>
+                      <div class="tx-16 mg-l-10">
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                      </div>
+                      <div class="mg-l-auto tx-rubik tx-color-02">4,230</div>
+                      <div class="mg-l-20 tx-rubik tx-color-03 wd-10p text-right">58%</div>
+                    </div>
+                    <div class="list-group-item pd-y-5 pd-x-20 d-flex align-items-center">
+                      <strong class="tx-12 tx-rubik">4.0</strong>
+                      <div class="tx-16 mg-l-10">
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                      </div>
+                      <div class="mg-l-auto tx-rubik tx-color-02">1,416</div>
+                      <div class="mg-l-20 tx-rubik tx-color-03 wd-10p text-right">24%</div>
+                    </div>
+                    <div class="list-group-item pd-y-5 pd-x-20 d-flex align-items-center">
+                      <strong class="tx-12 tx-rubik">3.0</strong>
+                      <div class="tx-16 mg-l-10">
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                      </div>
+                      <div class="mg-l-auto tx-rubik tx-color-02">980</div>
+                      <div class="mg-l-20 tx-rubik tx-color-03 wd-10p text-right">16%</div>
+                    </div>
+                    <div class="list-group-item pd-y-5 pd-x-20 d-flex align-items-center">
+                      <strong class="tx-12 tx-rubik">2.0</strong>
+                      <div class="tx-16 mg-l-10">
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                      </div>
+                      <div class="mg-l-auto tx-rubik tx-color-02">401</div>
+                      <div class="mg-l-20 tx-rubik tx-color-03 wd-10p text-right">8%</div>
+                    </div>
+                    <div class="list-group-item pd-y-5 pd-x-20 d-flex align-items-center bg-transparent">
+                      <strong class="tx-12 tx-rubik">1.0</strong>
+                      <div class="tx-16 mg-l-10">
+                        <i class="icon ion-md-star lh-0 tx-orange"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                        <i class="icon ion-md-star lh-0 tx-gray-300"></i>
+                      </div>
+                      <div class="mg-l-auto tx-rubik tx-color-02">798</div>
+                      <div class="mg-l-20 tx-rubik tx-color-03 wd-10p text-right">12%</div>
+                    </div>
+                  </div><!-- list-group -->
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+            </div><!-- col -->
+          </div><!-- row -->
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- container -->
+  {% endblock %}
+
+  {% block university %}
+
+  <script src="{% static '/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static '/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/lib/feather-icons/feather.min.js' %}"></script>
+  <script src="{% static '/lib/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static '/lib/jquery.flot/jquery.flot.js' %}"></script>
+  <script src="{% static '/lib/jquery.flot/jquery.flot.stack.js' %}"></script>
+  <script src="{% static '/lib/jquery.flot/jquery.flot.resize.js' %}"></script>
+  <script src="{% static '/lib/flot.curvedlines/curvedLines.js' %}"></script>
+  <script src="{% static '/lib/peity/jquery.peity.min.js' %}"></script>
+  <script src="{% static '/lib/chart.js' %}/Chart.bundle.min.js' %}"></script>
+  
+  <script src="{% static '/assets/js/dashforge.js' %}"></script>
+  <script src="{% static '/assets/js/dashforge.aside.js' %}"></script>
+  <script src="{% static '/assets/js/dashforge.sampledata.js' %}"></script>
+
+  <!-- append theme customizer -->
+  <script src="{% static '/lib/js-cookie/js.cookie.js' %}"></script>
+  <script src="{% static '/assets/js/dashforge.settings.js' %}"></script>
+
+  <script>
+    $(function(){
+      'use strict'
+
+      $.plot('#flotChart1', [{
+        data: df2,
+        color: '#65e0e0'
+      },{
+        data: df1,
+        color: '#69b2f8'
+      },{
+        data: df3,
+        color: '#0168fa',
+        lines: {
+          show: true,
+          lineWidth: 1.5
+        },
+        bars: { show: false }
+      }], {
+        series: {
+          shadowSize: 0,
+          bars: {
+            show: true,
+            lineWidth: 0,
+            barWidth: .5,
+            fill: 1
+          }
+        },
+        grid: {
+          color: '#c0ccda',
+          borderWidth: 0,
+          labelMargin: 10
+        },
+              yaxis: {
+          show: true,
+          max: 90,
+          tickSize: 15
+        },
+              xaxis: {
+          color: 'transparent',
+          show: true,
+          max: 37,
+          ticks: [[0,'Mar 10'],[5,'Mar 11'],[10,'Mar 12'],[15,'Mar 13'],[20,'Mar 14'],[25,'Mar 15'],[30,'Mar 16'],[35,'Mar 17']]
+        }
+          });
+
+      // Donut chart
+      $('.peity-donut').peity('donut');
+
+
+      $.plot('#flotChart2', [{
+        data: df3,
+        color: '#0168fa',
+        curvedLines: { apply: true }
+      }], {
+        series: {
+          shadowSize: 0,
+          lines: {
+            show: true,
+            lineWidth: 1.5,
+            fill: .05
+          }
+        },
+        grid: {
+          borderWidth: 0,
+          labelMargin: 0
+        },
+        yaxis: {
+          show: false,
+          max: 55
+        },
+        xaxis: {
+          show: true,
+          color: 'rgba(131,146,165,.08)',
+          min: 48,
+          max: 102,
+          tickSize: 5
+        }
+      });
+    })
+
+    // Horizontal bar chart
+    var ctx2 = document.getElementById('chartBar2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'horizontalBar',
+      data: {
+        labels: ['FIS', 'MAT', 'INF'],
+        datasets: [{
+          data: [90, 60, 50, 95, 50, 60],
+          backgroundColor: ['#65e0e0', '#69b2f8','#6fd39b','#f77eb9','#fdb16d','#c693f9']
+        },{
+          data: [60, 50, 70, 45, 70, 30],
+          backgroundColor: '#e5e9f2'
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+          display: false,
+          labels: {
+            display: false
+          }
+        },
+        layout: {
+          padding: {
+            left: 5
+          }
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            barPercentage: 0.5,
+            ticks: {
+              beginAtZero:true,
+              fontSize: 13,
+              fontColor: '#182b49',
+              fontFamily: 'IBM Plex Sans'
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              color: '#e5e9f2'
+            },
+            ticks: {
+              beginAtZero: true,
+              fontSize: 10,
+              fontColor: '#182b49',
+              max: 100
+            }
+          }]
+        }
+      }
+    });
+  </script>
+  
+
+
+  {% endblock %}
